@@ -71,7 +71,7 @@ class Enigma:
                 encrypted_message += c
         return encrypted_message
 
-# Configuração dos rotores
+# Configuração de exemplo
 rotor1 = Rotor("EKMFLGDQVZNTOWYHXUSPAIBRCJ", 17)  # Rotor I
 rotor2 = Rotor("AJDKSIRUXBLHWTMCQGZNPYFVOE", 5)   # Rotor II
 rotor3 = Rotor("BDFHJLCPRTXVZNYEIWGAKMUSQO", 22)  # Rotor III
@@ -80,19 +80,32 @@ plugboard = Plugboard({'A': 'B', 'B': 'A', 'C': 'D', 'D': 'C'})  # Exemplo de pl
 
 enigma = Enigma([rotor1, rotor2, rotor3], reflector, plugboard)
 
-st.header("Escolha as configurações da máquina")
+# Interface do Streamlit
+st.title("Máquina Enigma")
 
-# Solicita a configuração inicial dos rotores
-initial_positions = st.text_input("Digite a posição inicial dos rotores (por exemplo, ABC): ").upper()
+# Entrada da posição inicial dos rotores
+initial_positions = st.text_input("Digite a posição inicial dos rotores (por exemplo, ABC):").upper()
 
-# Entrada da mensagem a ser criptografada
-message = st.text_area("Digite a mensagem para criptografar:")
+# Caixa de texto para a mensagem a ser criptografada
+message_encrypt = st.text_area("Digite a mensagem para criptografar:")
 
 # Botão para criptografar
 if st.button("Criptografar"):
-    if initial_positions and message:
+    if initial_positions and message_encrypt:
         enigma.set_rotor_positions(initial_positions)
-        encrypted_message = enigma.encrypt(message)
+        encrypted_message = enigma.encrypt(message_encrypt)
         st.write(f"Mensagem Criptografada: {encrypted_message}")
     else:
-        st.write("Por favor, insira a posição inicial dos rotores e a mensagem.")
+        st.write("Por favor, insira a posição inicial dos rotores e a mensagem para criptografar.")
+
+# Caixa de texto para a mensagem a ser descriptografada
+message_decrypt = st.text_area("Digite a mensagem para descriptografar:")
+
+# Botão para descriptografar
+if st.button("Descriptografar"):
+    if initial_positions and message_decrypt:
+        enigma.set_rotor_positions(initial_positions)
+        decrypted_message = enigma.encrypt(message_decrypt)  # A criptografia Enigma é reversível com as mesmas configurações
+        st.write(f"Mensagem Descriptografada: {decrypted_message}")
+    else:
+        st.write("Por favor, insira a posição inicial dos rotores e a mensagem para descriptografar.")
