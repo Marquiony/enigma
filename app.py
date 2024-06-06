@@ -84,7 +84,7 @@ enigma = Enigma([rotor1, rotor2, rotor3], reflector, plugboard)
 st.title("Máquina Enigma")
 
 # Entrada da posição inicial dos rotores
-initial_positions = st.text_input("Digite a posição inicial dos rotores (por exemplo, ABC):").upper()
+initial_positions = st.text_input("Digite 3 letras aleatórias e guarde na memória (por exemplo, ABC):").upper()
 
 # Caixa de texto para a mensagem a ser criptografada
 message_encrypt = st.text_area("Digite a mensagem para criptografar:")
