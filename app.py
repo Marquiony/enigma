@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.write(""" 
-# Bem vindo a criptografia da máquina enigma
+# Bem vindo a criptografia da máquina enigma by Marquiony 
 """)
 
 class Rotor:
@@ -71,7 +71,7 @@ class Enigma:
                 encrypted_message += c
         return encrypted_message
 
-# Configuração de exemplo
+# Configuração dos rotores
 rotor1 = Rotor("EKMFLGDQVZNTOWYHXUSPAIBRCJ", 17)  # Rotor I
 rotor2 = Rotor("AJDKSIRUXBLHWTMCQGZNPYFVOE", 5)   # Rotor II
 rotor3 = Rotor("BDFHJLCPRTXVZNYEIWGAKMUSQO", 22)  # Rotor III
@@ -80,14 +80,11 @@ plugboard = Plugboard({'A': 'B', 'B': 'A', 'C': 'D', 'D': 'C'})  # Exemplo de pl
 
 enigma = Enigma([rotor1, rotor2, rotor3], reflector, plugboard)
 
-# Interface do Streamlit
-st.title("Máquina Enigma")
-
 # Entrada da posição inicial dos rotores
-initial_positions = st.text_input("Digite 3 letras aleatórias e guarde na memória (por exemplo, ABC):").upper()
+initial_positions = st.text_input("Digite 3 letras aleatórias e guarde na memória para criptografar ou descriptografar(por exemplo, ABC):").upper()
 
 # Caixa de texto para a mensagem a ser criptografada
-message_encrypt = st.text_area("Digite a mensagem para criptografar:")
+message_encrypt = st.text_area("Digite a mensagem para criptografar, mas nao use acentos ou pontuações:")
 
 # Botão para criptografar
 if st.button("Criptografar"):
